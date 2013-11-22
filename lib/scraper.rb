@@ -25,14 +25,14 @@ class Scraper
     end
 
     def get_students_twitter_usernames
-        mixed_twitters = html.search("li:first-child a[href^").text.split(" ")
+        mixed_twitters = html.search("li:first-child a[href]").text.split(" ")
         twitter_array = mixed_twitters.select { |name| name[0] = "@" }
     end
 
 end
 
 #these are the things you'll wanna do in your test
-my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
+# my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
 # puts my_scraper.get_students_names
 # puts my_scraper.html #show all text
 # puts my_scraper.get_students_twitter_usernames #show twitter name

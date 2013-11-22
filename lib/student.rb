@@ -13,7 +13,4 @@ class Student
         @twitter = twitter
     end
 
-    # def say_name
-    #     "#{@name}"
-    # end
 end

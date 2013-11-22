@@ -17,7 +17,8 @@ class Scraper
 
     def get_students_blogs
         blogs = []
-        19.times do |i|
+        num_of_blogs = html.search("li .blog").length
+        num_of_blogs.times do |i|
             blogs << html.search("li .blog")[i]["href"]
         end
         blogs
@@ -32,10 +33,10 @@ end
 
 #these are the things you'll wanna do in your test
 my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
-puts my_scraper.get_students_names
+# puts my_scraper.get_students_names
 # puts my_scraper.html #show all text
 # puts my_scraper.get_students_twitter_usernames #show twitter name
-# p my_scraper.get_students_blogs #show blogs
+# puts my_scraper.get_students_blogs #show blogs
 
 #get blogs-- in a tag and href attribute, get twitter urls
 

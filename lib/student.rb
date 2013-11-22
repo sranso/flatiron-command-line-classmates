@@ -5,10 +5,15 @@
 
 class Student
 
+    attr_accessor :name, :blog, :twitter
+
     def initialize(name, blog, twitter)
         @name = name
         @blog = blog
         @twitter = twitter
     end
 
+    # def say_name
+    #     "#{@name}"
+    # end
 end

@@ -15,6 +15,7 @@ blogs = student_scraper.get_students_blogs
 
 # 4. get twitters
 twitters = student_scraper.get_students_twitter_usernames
+puts twitters
 
 # 5. make a new student object for each person
 #this is what we are doing for each: Sarah_Ransohoff = Student.new()
@@ -23,6 +24,9 @@ students = []
     students << Student.new(names[i], blogs[i], twitters[i])
 end
 
+# puts students
+
 students.each do |person|
-    puts person.twitter
+    puts "n #{person.name} b #{person.blog} t #{person.twitter} "
 end
+

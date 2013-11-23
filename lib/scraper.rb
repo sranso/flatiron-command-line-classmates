@@ -10,7 +10,7 @@ class Scraper
       @html = Nokogiri::HTML(download)
   end
 
-  def get_students_names
+  def get_names
       all_the_h3s = html.search("h3")
       # new_names = all_the_h3s.text.split(/(?<=[a-z.])(?=[A-Z])/)
       # all_the_h3s.text --> calls .text on an entire array
@@ -19,14 +19,14 @@ class Scraper
       end
   end
 
-  def get_students_blogs
+  def get_blogs
 
       #==code v3 --> doesn't account for those w/o blogs
       #html.search("a.blog").collect { |anchor| anchor["href"] }
       #html.search("a.blog @href").collect { |anchor| anchor.text } --> also works
       
       #==code v2 --> accounts for those w/o blogs
-      html.search("ul .back").collect do |back_side| #every ul w/ the class social
+      html.search(".back").collect do |back_side| #every ul w/ the class social
           if back_side.search("a.blog").text == "Blog"
               back_side.search("a.blog")[0]["href"]
           else
@@ -43,26 +43,23 @@ class Scraper
       # blogs
   end
 
-  def get_students_twitter_usernames
+  def get_twitters
       # mixed_twitters = html.search("li:first-child a").text.split(" ")
       # twitter_array = mixed_twitters.select { |name| name[0] = "@" }
-      # ==experimental code
       twitters = []
-      # num_of_twitters = html.search("li:first-child a").length
-      html.search("li:first-child a").text.split(" ").each do |li_first|
-          if li_first[0] == "@"
-              twitters << li_first
-          else
-              twitters << "none"
-          end
+      html.search(".back").each do |back_side|
+        if back_side.search(".twitter").text.split[0].nil?
+          twitters << "none"
+        else
+          twitters << back_side.search(".twitter").text.split[0]
+        end
       end
       twitters
   end
 end
 
-#these are the things you'll wanna do in your test
 my_scraper = Scraper.new("http://flatironschool-bk.herokuapp.com/")
-# puts my_scraper.get_students_names
-# puts my_scraper.get_students_twitter_usernames #show twitter name
-# puts my_scraper.get_students_blogs #show blogs
+# puts my_scraper.get_names
+# p my_scraper.get_twitters #show twitter name
+# puts my_scraper.get_blogs.size #show blogs
 

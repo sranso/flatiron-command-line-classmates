@@ -75,7 +75,6 @@ class App
         get_specific_twitter(name)
       elsif ans == "5"
         puts_class
-      else puts "I love you but I don't understand. Type a number please!"
       end
     
   end
